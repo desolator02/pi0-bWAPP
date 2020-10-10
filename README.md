@@ -15,6 +15,28 @@ docker run -d -p 80:80 sumitraina/pi0-bwapp
 
 and you should be able to go to <ip>/install.php to set up your instance.
 
+# docker compose file
+
+Create a file named **docker-compose.yml** and add the below text. Then run **docker-compose up --detach** command to start the container. This will add a volume to container and save your progress. 
+
+```
+version: "3"
+
+#Run command docker-compose up --detach 
+services:
+  pibwapp:
+    container_name: pi0-bwapp
+    image: sumitraina/pi0-bwapp:latest
+    ports:
+      - "80:80"
+      - "3306:3306"
+    # Volumes to store your data
+    volumes:
+      - './etc/mysql:/etc/mysql'
+      - './var/lib/mysql:/var/lib/mysql'
+
+```
+
 
 Usage
 -----
